@@ -1,8 +1,6 @@
-# React Native Font Package Template
+# Plus Font for React Native
 
-A GitHub template for creating and distributing typed React Native font packages.
-
-Each package exports a PostScript name map that works on both iOS and Android — no platform-specific handling needed. Drop in your `.ttf` files, run two commands, publish.
+Plus font, packaged for React Native. Exports a typed weight map (PostScript names) that resolves correctly on both iOS and Android — no `Platform.select`, no manual `fontFamily` string guessing.
 
 | | |
 |---|---|
@@ -10,53 +8,71 @@ Each package exports a PostScript name map that works on both iOS and Android �
 | iOS | ✓ |
 | Android | ✓ |
 
----
-
-## Quick start
-
-**Option A — GitHub template (recommended)**
-
-Click **Use this template** on GitHub to create a new repo under your account, then clone your repo:
+## Install
 
 ```bash
-git clone https://github.com/<your-org>/rn-font-<fontname>.git
-cd rn-font-<fontname>
+npm install @devraj-labs/rn-font-jakaratasans
+npx react-native-asset
 ```
 
-**Option B — Clone directly**
+`react-native-asset` reads `react-native.config.js` from the package and copies the `.ttf` files into your native iOS/Android project automatically. Re-run it whenever you add or update a font package.
 
-```bash
-git clone https://github.com/devraj-labs/rn-font-template.git rn-font-<fontname>
-cd rn-font-<fontname>
-git remote set-url origin https://github.com/<your-org>/rn-font-<fontname>.git
+## Usage
+
+### With Vajra UI
+
+Register the font in your theme and use it via the `font` prop:
+
+```ts
+import { plusFonts } from '@devraj-labs/rn-font-jakaratasans';
+
+createVajraTheme({
+  typography: {
+    fonts: {
+      families: {
+        ...plusFonts,
+      },
+    },
+  },
+});
 ```
 
-Then in both cases:
-
-```bash
-npm run init          # enter font name — renames package.json, cleans placeholders, archives this README
-# drop your .ttf files into assets/fonts/
-npm run generate      # reads fonts, writes src/index.ts, generates README.md for the package
-npm run release       # build + publish to npm
+```tsx
+<Text font="plusJakartaSans" fontWeight="200">Sample text</Text>
+<Text font="plusJakartaSans" fontWeight="300">Sample text</Text>
 ```
 
-> After `npm run init`, this file becomes `README-TEMPLATE.md`.
-> After `npm run generate`, a new `README.md` is written with install and usage instructions specific to your font package.
+### Without Vajra UI
 
-## Scripts
+The export is a plain object — use it however your app resolves fonts:
 
-| Script | Description |
-|---|---|
-| `npm run init` | One-time setup — renames the package, cleans placeholders, moves this README to `README-TEMPLATE.md` |
-| `npm run generate` | Reads `.ttf` files, infers weight map, writes `src/index.ts` and generates `README.md` |
-| `npm run build` | Compiles TypeScript to `dist/` |
-| `npm run release` | Build + publish to npm |
+```ts
+import { plusFonts } from '@devraj-labs/rn-font-jakaratasans';
+
+const styles = StyleSheet.create({
+  // plusFonts.plusJakartaSans['200'] → 'PlusJakartaSans-ExtraLight'
+  heading: { fontFamily: plusFonts.plusJakartaSans['200'], fontSize: 24 },
+  body:    { fontFamily: plusFonts.plusJakartaSans['800'], fontSize: 16 },
+});
+```
+
+## Font map
+
+| Family | Weight | PostScript name |
+|--------|--------|-----------------|
+| `plusJakartaSans` | `'200'` | `'PlusJakartaSans-ExtraLight'` |
+| `plusJakartaSans` | `'300'` | `'PlusJakartaSans-Light'` |
+| `plusJakartaSans` | `'400'` | `'PlusJakartaSans-Regular'` |
+| `plusJakartaSans` | `'500'` | `'PlusJakartaSans-Medium'` |
+| `plusJakartaSans` | `'600'` | `'PlusJakartaSans-SemiBold'` |
+| `plusJakartaSans` | `'700'` | `'PlusJakartaSans-Bold'` |
+| `plusJakartaSans` | `'800'` | `'PlusJakartaSans-ExtraBold'` |
 
 ## Docs
 
-- [Creating a font package](docs/creating-a-package.md) — full walkthrough for publishing a new font
-- [Using a font package](docs/using-a-package.md) — how to consume the package in your app or design system
-- [README generation](docs/readme-generation.md) — how `README.md` is generated and what it contains
+- [Using a font package](https://github.com/devraj-labs/rn-font-template/blob/main/docs/using-a-package.md) — full usage guide including Vajra UI and standalone examples
+- [Creating a font package](https://github.com/devraj-labs/rn-font-template/blob/main/docs/creating-a-package.md) — how this package was built from the template
+- [README generation](https://github.com/devraj-labs/rn-font-template/blob/main/docs/readme-generation.md) — how this file is auto-generated
 
 ## License
 
