@@ -1,4 +1,4 @@
-# Plus Font for React Native
+# Jakaratasans Font for React Native
 
 Plus font, packaged for React Native. Exports a typed weight map (PostScript names) that resolves correctly on both iOS and Android — no `Platform.select`, no manual `fontFamily` string guessing.
 
