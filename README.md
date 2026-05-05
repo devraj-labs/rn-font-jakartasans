@@ -1,4 +1,4 @@
-# Jakartasans Font for React Native
+# Plus Font for React Native
 
 Plus font, packaged for React Native. Exports a typed weight map (PostScript names) that resolves correctly on both iOS and Android — no `Platform.select`, no manual `fontFamily` string guessing.
 
@@ -56,7 +56,17 @@ createVajraTheme({
 ```tsx
 <Text font="plusJakartaSans" fontWeight="200">Sample text</Text>
 <Text font="plusJakartaSans" fontWeight="300">Sample text</Text>
+<Text font="plusJakartaSans" fontStyle="italic">Italic text</Text>
 ```
+
+### Italic
+
+When using Vajra UI, pass `fontStyle="italic"` — the DS resolves the correct italic font file automatically:
+
+```tsx
+<Text font="newsreader9pt" fontStyle="italic">Good morning.</Text>
+```
+
 
 ### Without Vajra UI
 
@@ -69,6 +79,7 @@ const styles = StyleSheet.create({
   // plusFonts.plusJakartaSans['200'] → 'PlusJakartaSans-ExtraLight'
   heading: { fontFamily: plusFonts.plusJakartaSans['200'], fontSize: 24 },
   body:    { fontFamily: plusFonts.plusJakartaSans['800'], fontSize: 16 },
+  italic:  { fontFamily: plusFonts.plusJakartaSans['200i'], fontSize: 16 },
 });
 ```
 
@@ -83,6 +94,13 @@ const styles = StyleSheet.create({
 | `plusJakartaSans` | `'600'` | `'PlusJakartaSans-SemiBold'` |
 | `plusJakartaSans` | `'700'` | `'PlusJakartaSans-Bold'` |
 | `plusJakartaSans` | `'800'` | `'PlusJakartaSans-ExtraBold'` |
+| `plusJakartaSans` | `'200i'` | `'PlusJakartaSans-ExtraLightItalic'` |
+| `plusJakartaSans` | `'300i'` | `'PlusJakartaSans-LightItalic'` |
+| `plusJakartaSans` | `'400i'` | `'PlusJakartaSans-Italic'` |
+| `plusJakartaSans` | `'500i'` | `'PlusJakartaSans-MediumItalic'` |
+| `plusJakartaSans` | `'600i'` | `'PlusJakartaSans-SemiBoldItalic'` |
+| `plusJakartaSans` | `'700i'` | `'PlusJakartaSans-BoldItalic'` |
+| `plusJakartaSans` | `'800i'` | `'PlusJakartaSans-ExtraBoldItalic'` |
 
 ## Docs
 
